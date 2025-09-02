@@ -1,4 +1,4 @@
-# AI + Web3: Agent Architect Playbook
+# AI + Web3: All The Agents (TypeScript-first)
 
 Build, evaluate, and compare AI agents that reason about, interact with, and ship on Web3. Organized for daily, testable progression and repeatable experiments across chains, tools, and agent frameworks.
 
@@ -36,25 +36,25 @@ flowchart LR
   G --> H[Labs\n(day-by-day tasks)]
 ```
 
-## Repo Structure
+## Repo Structure (simplified)
 ```
-docs/                  # Getting started, patterns, security
-resources/             # Curations: MCP, repos, papers
-templates/             # Lab and agent project templates
-labs/                  # Day-by-day, testable exercises
-agents/                # Agent framework notes & adapters
-examples/              # Example projects (stubs + links)
+agents-ts/             # Ready-to-run TS agents (CLIs)
+packages/              # Reusable TS toolkits (EVM, IPFS, ...)
 external/              # Vendored submodules (AgentKits, MCP)
-scripts/               # Scaffold + evaluation utilities
-ROADMAP.md             # Phased build-out plan
-EVALS.md               # Evaluation rubric & task suite
+docs/                  # Website: inspiration + guides
+resources/             # Curations
+labs/                  # Optional labs & experiments
+scripts/               # Runners (Python), playbooks, utilities
 ```
 
-## Quickstart
-- Prereqs: Python 3.10+, Node 18+, Docker, Foundry or Hardhat (for EVM), Solana CLI (optional), Git
-- Explore docs: `docs/GETTING_STARTED.md`
-- Start with Day 001: `labs/day-001-wallets-and-rpc/README.md`
-- Scaffold a new day: `python scripts/scaffold_lab.py --day 006 --name "intent-swap-aggregator"`
+## Quickstart (TypeScript agents)
+- Prereqs: Node 18+, pnpm or npm, optional Foundry
+- Install: `npm install` (or `pnpm i`)
+- Build: `npm run build`
+- Run wallet agent:
+  - Env: `RPC_URL`, `PRIVATE_KEY`, `FROM_ADDRESS`, `TO_ADDRESS`, `VALUE_WEI`, `[MAX_VALUE_WEI]`
+  - `node agents-ts/wallet-agent/dist/index.js`
+  - Or add to PATH: `npx -w @ai-web3/wallet-agent wallet-agent`
  - Visit the site: enable GitHub Pages (docs/) and open https://frankxai.github.io/ai-and-web3/
 
 ## Daily Labs

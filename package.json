@@ -1,0 +1,16 @@
+{
+  "name": "ai-and-web3",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*",
+    "agents-ts/*",
+    "examples-ts/*"
+  ],
+  "scripts": {
+    "build": "npm run -ws build",
+    "dev": "npm run -ws dev || true",
+    "lint": "echo 'no lint configured'"
+  }
+}
+
