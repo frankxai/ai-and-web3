@@ -1,0 +1,24 @@
+/* Simple, clean theme for docs site */
+:root{
+  --bg:#0b0f1a;--panel:#11182a;--card:#0f1626;--text:#e6f1ff;--muted:#9bb0cc;--accent:#6cc5ff;--good:#22c55e;--warn:#f59e0b;--bad:#ef4444
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent);text-decoration:none}
+header{position:sticky;top:0;background:rgba(11,15,26,.8);backdrop-filter:blur(8px);border-bottom:1px solid #172135;z-index:10}
+.nav{display:flex;align-items:center;gap:18px;max-width:1100px;margin:0 auto;padding:14px 16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700}
+.logo span{color:#fff}
+.nav a{color:var(--muted)}
+.nav a.active,.nav a:hover{color:#fff}
+.hero{max-width:1100px;margin:32px auto;padding:0 16px 32px}
+.hero h1{font-size:40px;line-height:1.1;margin:12px 0}
+.hero p{max-width:800px;color:var(--muted);font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:24px 0}
+.card{background:linear-gradient(180deg,#11182a,#0b0f1a);border:1px solid #1c2740;border-radius:12px;padding:16px}
+.card h3{margin:0 0 8px 0}
+.badge{display:inline-block;border:1px solid #224062;color:#9bd1ff;border-radius:999px;padding:2px 10px;font-size:12px}
+.footer{max-width:1100px;margin:24px auto;padding:24px 16px;color:var(--muted);border-top:1px solid #172135}
+code,kbd{background:#0e1525;border:1px solid #1f2b45;border-radius:6px;padding:0 6px}
+.cta{display:inline-block;background:#1075f3;color:#fff;padding:10px 14px;border-radius:10px;border:1px solid #3b82f6}
+.muted{color:var(--muted)}
