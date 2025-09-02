@@ -44,6 +44,7 @@ templates/             # Lab and agent project templates
 labs/                  # Day-by-day, testable exercises
 agents/                # Agent framework notes & adapters
 examples/              # Example projects (stubs + links)
+external/              # Vendored submodules (AgentKits, MCP)
 scripts/               # Scaffold + evaluation utilities
 ROADMAP.md             # Phased build-out plan
 EVALS.md               # Evaluation rubric & task suite
@@ -83,6 +84,10 @@ Details live in `docs/FRAMEWORKS.md` and scoring in `EVALS.md`.
 
 ## MCP Servers
 We integrate general-purpose MCP servers (filesystem, git, web, sqlite) and design purpose-built Web3 servers (ethereum, solana, ipfs, thegraph, dune, tenderly). See `resources/mcp-servers.md` for the list and `mcp-specs/` for draft tool specs.
+
+## External AgentKits
+- Coinbase AgentKit is vendored under `external/coinbase-agentkit` (submodule)
+- thirdweb AgentKit and Solana AgentKit: add-on submodules pending URL confirmation
 
 ## Contributing
 - Keep examples minimal but runnable; link out to heavy stacks
