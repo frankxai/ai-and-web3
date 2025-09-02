@@ -1,0 +1,5 @@
+# Global policy defaults (copy to policies.yaml to activate)
+evm:
+  max_value_wei: 100000000000000 # 0.0001 ETH
+  allowlist: []  # list of addresses allowed (checksummed)
+  denylist: []   # list of addresses denied (checksummed)

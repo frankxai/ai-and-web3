@@ -9,6 +9,7 @@ from typing import Any, Dict
 from dotenv import load_dotenv
 from eth_account import Account
 from web3 import Web3
+import yaml
 
 
 @dataclass
@@ -27,6 +28,23 @@ def load_ctx() -> EVMContext:
     w3 = Web3(Web3.HTTPProvider(rpc))
     addr = Account.from_key(pk).address
     return EVMContext(w3=w3, address=addr, pk=pk)
+
+
+def load_policy() -> Dict[str, Any]:
+    # Load policy from config/policies.yaml if present; else use env overrides
+    cfg_path = Path(__file__).resolve().parents[2] / "config" / "policies.yaml"
+    data: Dict[str, Any] = {}
+    if cfg_path.exists():
+        data = yaml.safe_load(cfg_path.read_text()) or {}
+    evm = data.get("evm", {})
+    # Env overrides
+    if os.environ.get("POLICY_MAX_VALUE_WEI"):
+        evm["max_value_wei"] = int(os.environ["POLICY_MAX_VALUE_WEI"])
+    if os.environ.get("POLICY_ALLOWLIST"):
+        evm["allowlist"] = [x.strip() for x in os.environ["POLICY_ALLOWLIST"].split(",") if x.strip()]
+    if os.environ.get("POLICY_DENYLIST"):
+        evm["denylist"] = [x.strip() for x in os.environ["POLICY_DENYLIST"].split(",") if x.strip()]
+    return evm
 
 
 def get_balance(address: str) -> Dict[str, Any]:
@@ -50,9 +68,17 @@ def simulate_transfer(to: str, value_wei: int) -> Dict[str, Any]:
         return {"ok": False, "error": str(e)}
 
 
-def send_transfer(to: str, value_wei: int, max_value_wei: int) -> Dict[str, Any]:
-    if int(value_wei) > int(max_value_wei):
+def send_transfer(to: str, value_wei: int, max_value_wei: int = None) -> Dict[str, Any]:
+    pol = load_policy()
+    limit = int(max_value_wei) if max_value_wei is not None else int(pol.get("max_value_wei", 0))
+    if limit and int(value_wei) > limit:
         raise SystemExit("Policy violation: value exceeds max_value_wei")
+    allow = set(a.lower() for a in pol.get("allowlist", []) if a)
+    deny = set(a.lower() for a in pol.get("denylist", []) if a)
+    if deny and to.lower() in deny:
+        raise SystemExit("Policy violation: destination is denylisted")
+    if allow and to.lower() not in allow:
+        raise SystemExit("Policy violation: destination not in allowlist")
     ctx = load_ctx()
     sim = simulate_transfer(to, value_wei)
     if not sim.get("ok"):
@@ -98,4 +124,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

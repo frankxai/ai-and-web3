@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: |
+          python -m pip install -U pip
+          pip install -r requirements.txt
+      - name: Lint import
+        run: |
+          python -c "import web3, eth_account"
+      - name: Dry run Day001
+        run: |
+          cp labs/day-001-wallets-and-rpc/.env.example labs/day-001-wallets-and-rpc/.env
+          python labs/day-001-wallets-and-rpc/wallet_ops.py || true
+  foundry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Foundry
+        run: |
+          curl -L https://foundry.paradigm.xyz | bash
+          ~/.foundry/bin/foundryup
+      - name: Build contracts
+        run: |
+          cd labs/day-003-contract-deploy-local
+          ~/.foundry/bin/forge build
+
