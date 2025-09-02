@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>API</title><link rel="stylesheet" href="assets/style.css"/></head>
+<body>
+<header><nav class="nav"><div class="logo"><img src="assets/logo.svg"/><span>AI + Web3</span></div>
+<a href="index.html">Home</a><a href="get-started.html">Get Started</a><a href="labs.html">Labs</a><a href="agents.html">Frameworks</a><a href="mcp.html">MCP</a><a href="roadmap.html">Roadmap</a><a href="gallery.html">Gallery</a><a class="active" href="api.html">API</a><a href="https://github.com/frankxai/ai-and-web3">GitHub</a></nav></header>
+<main class="hero">
+<h1>API: EVM Tool Server</h1>
+<p class="muted">Start: <code>uvicorn agents.servers.evm_server:app --reload</code></p>
+<div class="grid">
+  <div class="card"><h3>GET /health</h3><p>Returns <code>{ ok: true }</code></p></div>
+  <div class="card"><h3>POST /evm/get_balance</h3><p>Body: <code>{ address }</code> → <code>{ address, wei }</code></p></div>
+  <div class="card"><h3>POST /evm/simulate_transfer</h3><p>Body: <code>{ to, value_wei }</code> → <code>{ ok, estimated_gas|error }</code></p></div>
+  <div class="card"><h3>POST /evm/send_transfer</h3><p>Body: <code>{ to, value_wei, max_value_wei? }</code> → tx receipt or policy error</p></div>
+</div>
+<p>Tools also available via the Python registry CLI: see <a href="TOOLS.md">TOOLS.md</a></p>
+</main>
+<div class="footer">Maintained by AI Architects • MIT License</div>
+</body></html>
+
