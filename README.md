@@ -55,6 +55,7 @@ EVALS.md               # Evaluation rubric & task suite
 - Explore docs: `docs/GETTING_STARTED.md`
 - Start with Day 001: `labs/day-001-wallets-and-rpc/README.md`
 - Scaffold a new day: `python scripts/scaffold_lab.py --day 006 --name "intent-swap-aggregator"`
+ - Visit the site: enable GitHub Pages (docs/) and open https://frankxai.github.io/ai-and-web3/
 
 ## Daily Labs
 - Day 001: Wallets + RPC fundamentals (EVM, testnet)
