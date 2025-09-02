@@ -1,0 +1,3 @@
+[submodule "external/coinbase-agentkit"]
+	path = external/coinbase-agentkit
+	url = https://github.com/coinbase/agentkit
