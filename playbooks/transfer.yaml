@@ -1,0 +1,16 @@
+name: simple-transfer
+description: Simulate then send a tiny transfer with policy limits
+steps:
+  - tool: evm.get_balance
+    args:
+      address: ${FROM_ADDRESS}
+  - tool: evm.simulate_transfer
+    args:
+      to: ${TO_ADDRESS}
+      value_wei: ${VALUE_WEI}
+  - tool: evm.send_transfer
+    args:
+      to: ${TO_ADDRESS}
+      value_wei: ${VALUE_WEI}
+      max_value_wei: ${MAX_VALUE_WEI}
+
