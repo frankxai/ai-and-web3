@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "name": "defi-portfolio-ui",
+  "builds": [
+    {
+      "src": "ui/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "https://your-backend.railway.app/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "ui/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@api_url",
+    "NEXT_PUBLIC_CHAIN_ID": "@chain_id",
+    "NEXT_PUBLIC_ENABLE_ANALYTICS": "@enable_analytics"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "regions": ["iad1"],
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "silent": false
+  }
+}

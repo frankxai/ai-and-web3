@@ -1,0 +1,265 @@
+{
+  "name": "defi-protocols-mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for DeFi protocol-specific operations",
+  "protocol_version": "2024-11-05",
+  "server": {
+    "endpoint": "http://localhost:3003",
+    "transport": "sse",
+    "capabilities": {
+      "tools": true,
+      "resources": true,
+      "prompts": true
+    }
+  },
+  "tools": [
+    {
+      "name": "aave_getReserveData",
+      "description": "Get Aave reserve data (APY, utilization, etc)",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "asset": {
+            "type": "string",
+            "description": "Asset address or symbol"
+          },
+          "market": {
+            "type": "string",
+            "default": "mainnet",
+            "enum": ["mainnet", "polygon", "arbitrum"]
+          }
+        },
+        "required": ["asset"]
+      }
+    },
+    {
+      "name": "aave_getUserAccountData",
+      "description": "Get user's Aave account data (health factor, etc)",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "description": "User address"
+          }
+        },
+        "required": ["user"]
+      }
+    },
+    {
+      "name": "compound_getSupplyRate",
+      "description": "Get Compound supply rate for asset",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "asset": {
+            "type": "string",
+            "description": "Asset symbol (USDC, ETH, etc)"
+          }
+        },
+        "required": ["asset"]
+      }
+    },
+    {
+      "name": "uniswap_getPoolData",
+      "description": "Get Uniswap V3 pool data (liquidity, volume, APY)",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "pool": {
+            "type": "string",
+            "description": "Pool address"
+          }
+        },
+        "required": ["pool"]
+      }
+    },
+    {
+      "name": "uniswap_getPositionData",
+      "description": "Get detailed Uniswap V3 position data",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tokenId": {
+            "type": "string",
+            "description": "NFT token ID of position"
+          }
+        },
+        "required": ["tokenId"]
+      }
+    },
+    {
+      "name": "lido_getStakingAPR",
+      "description": "Get current Lido staking APR",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "curve_getPoolAPY",
+      "description": "Get Curve pool APY (base + rewards)",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "pool": {
+            "type": "string",
+            "description": "Pool address or name"
+          }
+        },
+        "required": ["pool"]
+      }
+    },
+    {
+      "name": "defi_getProtocolTVL",
+      "description": "Get protocol TVL from DeFi Llama",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "protocol": {
+            "type": "string",
+            "description": "Protocol slug (e.g., 'aave', 'uniswap')"
+          }
+        },
+        "required": ["protocol"]
+      }
+    },
+    {
+      "name": "defi_getTokenPrice",
+      "description": "Get token price in USD",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token address or symbol"
+          },
+          "source": {
+            "type": "string",
+            "enum": ["coingecko", "chainlink", "uniswap"],
+            "default": "coingecko"
+          }
+        },
+        "required": ["token"]
+      }
+    },
+    {
+      "name": "defi_simulateYieldChange",
+      "description": "Simulate moving position from one protocol to another",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "object",
+            "properties": {
+              "protocol": {"type": "string"},
+              "asset": {"type": "string"},
+              "amount": {"type": "number"}
+            }
+          },
+          "to": {
+            "type": "object",
+            "properties": {
+              "protocol": {"type": "string"},
+              "asset": {"type": "string"}
+            }
+          }
+        },
+        "required": ["from", "to"]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "defi://protocols/list",
+      "name": "Supported Protocols",
+      "description": "List of all supported DeFi protocols"
+    },
+    {
+      "uri": "defi://yields/leaderboard",
+      "name": "Yield Leaderboard",
+      "description": "Current highest yields across protocols"
+    },
+    {
+      "uri": "defi://safety/scores",
+      "name": "Protocol Safety Scores",
+      "description": "Safety ratings for all protocols"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "compare_yields",
+      "description": "Compare yields across protocols for a specific asset",
+      "arguments": [
+        {
+          "name": "asset",
+          "description": "Asset to compare (e.g., USDC)",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "protocols": {
+    "aave": {
+      "name": "Aave V3",
+      "contracts": {
+        "mainnet": {
+          "pool": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+          "dataProvider": "0x7B4EB56E7CD4b454BA8ff71E4518426369a138a3"
+        }
+      },
+      "api": "https://aave-api-v3.aave.com"
+    },
+    "compound": {
+      "name": "Compound V3",
+      "contracts": {
+        "mainnet": {
+          "comet_usdc": "0xc3d688B66703497DAA19211EEdff47f25384cdc3"
+        }
+      }
+    },
+    "uniswap": {
+      "name": "Uniswap V3",
+      "contracts": {
+        "mainnet": {
+          "factory": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+          "nft_manager": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88"
+        }
+      }
+    },
+    "lido": {
+      "name": "Lido",
+      "contracts": {
+        "mainnet": {
+          "steth": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"
+        }
+      },
+      "api": "https://stake.lido.fi/api"
+    },
+    "curve": {
+      "name": "Curve Finance",
+      "api": "https://api.curve.fi/api"
+    }
+  },
+  "configuration": {
+    "required_env": [
+      "ETHEREUM_RPC_URL"
+    ],
+    "optional_env": [
+      "COINGECKO_API_KEY",
+      "DEFILLAMA_API_KEY"
+    ]
+  },
+  "rate_limits": {
+    "requests_per_second": 5,
+    "requests_per_minute": 150
+  },
+  "caching": {
+    "enabled": true,
+    "ttl_by_method": {
+      "getTokenPrice": 60,
+      "getReserveData": 300,
+      "getProtocolTVL": 600
+    }
+  }
+}

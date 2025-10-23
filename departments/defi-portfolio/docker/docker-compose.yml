@@ -1,0 +1,234 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: defi-portfolio-db
+    environment:
+      POSTGRES_DB: defi_portfolio
+      POSTGRES_USER: portfolio_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - defi-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: defi-portfolio-cache
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - defi-network
+
+  # MCP Ethereum Server
+  mcp-ethereum:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: mcp-servers
+    container_name: defi-mcp-ethereum
+    environment:
+      - ETHEREUM_RPC_URL=${ETHEREUM_RPC_URL}
+      - ETHEREUM_RPC_WSS=${ETHEREUM_RPC_WSS}
+      - TENDERLY_API_KEY=${TENDERLY_API_KEY}
+      - MCP_PORT=3001
+    ports:
+      - "3001:3001"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - defi-network
+    restart: unless-stopped
+
+  # MCP The Graph Server
+  mcp-thegraph:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: mcp-servers
+    container_name: defi-mcp-thegraph
+    environment:
+      - THEGRAPH_API_KEY=${THEGRAPH_API_KEY}
+      - MCP_PORT=3002
+    ports:
+      - "3002:3002"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - defi-network
+    restart: unless-stopped
+
+  # MCP DeFi Protocols Server
+  mcp-defi-protocols:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: mcp-servers
+    container_name: defi-mcp-protocols
+    environment:
+      - ETHEREUM_RPC_URL=${ETHEREUM_RPC_URL}
+      - COINGECKO_API_KEY=${COINGECKO_API_KEY}
+      - DEFILLAMA_API_KEY=${DEFILLAMA_API_KEY}
+      - MCP_PORT=3003
+    ports:
+      - "3003:3003"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - defi-network
+    restart: unless-stopped
+
+  # FastAPI Backend
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: api
+    container_name: defi-portfolio-api
+    environment:
+      - DATABASE_URL=postgresql://portfolio_user:${DB_PASSWORD:-changeme}@postgres:5432/defi_portfolio
+      - REDIS_URL=redis://redis:6379/0
+      - MCP_ETHEREUM_URL=http://mcp-ethereum:3001
+      - MCP_THEGRAPH_URL=http://mcp-thegraph:3002
+      - MCP_DEFI_PROTOCOLS_URL=http://mcp-defi-protocols:3003
+      - ETHEREUM_RPC_URL=${ETHEREUM_RPC_URL}
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-in-prod}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      mcp-ethereum:
+        condition: service_healthy
+      mcp-thegraph:
+        condition: service_healthy
+      mcp-defi-protocols:
+        condition: service_healthy
+    volumes:
+      - ../api:/app/api
+      - ../tools:/app/tools
+      - ../config:/app/config
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - defi-network
+    restart: unless-stopped
+
+  # Next.js UI (optional)
+  ui:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: ui
+    container_name: defi-portfolio-ui
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    networks:
+      - defi-network
+    restart: unless-stopped
+    profiles:
+      - with-ui
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: defi-portfolio-proxy
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
+      - ui
+    networks:
+      - defi-network
+    restart: unless-stopped
+    profiles:
+      - with-proxy
+
+  # Prometheus (Monitoring)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: defi-portfolio-prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - defi-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Grafana (Visualization)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: defi-portfolio-grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - defi-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+networks:
+  defi-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:

@@ -1,0 +1,165 @@
+{
+  "name": "thegraph-mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for The Graph queries",
+  "protocol_version": "2024-11-05",
+  "server": {
+    "endpoint": "http://localhost:3002",
+    "transport": "sse",
+    "capabilities": {
+      "tools": true,
+      "resources": true,
+      "prompts": true
+    }
+  },
+  "tools": [
+    {
+      "name": "graph_queryUniswapPositions",
+      "description": "Query Uniswap V3 positions for an address",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string",
+            "description": "Position owner address"
+          },
+          "pool": {
+            "type": "string",
+            "description": "Optional pool address filter"
+          }
+        },
+        "required": ["owner"]
+      }
+    },
+    {
+      "name": "graph_queryAavePositions",
+      "description": "Query Aave V3 positions for an address",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "description": "User address"
+          },
+          "asset": {
+            "type": "string",
+            "description": "Optional asset filter"
+          }
+        },
+        "required": ["user"]
+      }
+    },
+    {
+      "name": "graph_queryCompoundPositions",
+      "description": "Query Compound V3 positions",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string",
+            "description": "Account address"
+          }
+        },
+        "required": ["account"]
+      }
+    },
+    {
+      "name": "graph_queryPoolFees",
+      "description": "Get 24h fee revenue for a Uniswap pool",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "pool": {
+            "type": "string",
+            "description": "Pool address"
+          },
+          "days": {
+            "type": "integer",
+            "default": 1,
+            "description": "Number of days to query"
+          }
+        },
+        "required": ["pool"]
+      }
+    },
+    {
+      "name": "graph_queryTransfers",
+      "description": "Get historical transfers for an address",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Address to query"
+          },
+          "token": {
+            "type": "string",
+            "description": "Optional token filter"
+          },
+          "limit": {
+            "type": "integer",
+            "default": 100,
+            "maximum": 1000
+          }
+        },
+        "required": ["address"]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "thegraph://uniswap-v3/pools/top",
+      "name": "Top Uniswap Pools",
+      "description": "Top 100 Uniswap V3 pools by TVL"
+    },
+    {
+      "uri": "thegraph://aave-v3/markets",
+      "name": "Aave Markets",
+      "description": "All Aave V3 lending markets"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "analyze_protocol_usage",
+      "description": "Analyze user's DeFi protocol usage patterns",
+      "arguments": [
+        {
+          "name": "address",
+          "description": "User address to analyze",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "subgraphs": {
+    "uniswap-v3": {
+      "endpoint": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
+      "entities": ["Position", "Pool", "Token", "Transaction"]
+    },
+    "aave-v3": {
+      "endpoint": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3",
+      "entities": ["User", "Reserve", "Borrow", "Deposit"]
+    },
+    "compound-v3": {
+      "endpoint": "https://api.thegraph.com/subgraphs/name/compound-finance/compound-v3",
+      "entities": ["Account", "Market", "Supply", "Borrow"]
+    }
+  },
+  "configuration": {
+    "required_env": [],
+    "optional_env": [
+      "THEGRAPH_API_KEY"
+    ]
+  },
+  "rate_limits": {
+    "requests_per_second": 5,
+    "requests_per_minute": 100,
+    "daily_limit": 1000
+  },
+  "caching": {
+    "enabled": true,
+    "ttl_seconds": 300,
+    "strategy": "lru",
+    "max_size_mb": 100
+  }
+}

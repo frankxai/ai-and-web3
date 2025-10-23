@@ -1,0 +1,81 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "pip install -r requirements.txt"
+  },
+  "deploy": {
+    "startCommand": "uvicorn api.main:app --host 0.0.0.0 --port $PORT",
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 300,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  },
+  "services": [
+    {
+      "name": "api",
+      "source": {
+        "repo": "frankxai/ai-and-web3",
+        "branch": "main",
+        "directory": "departments/defi-portfolio"
+      },
+      "variables": {
+        "ETHEREUM_RPC_URL": {
+          "required": true,
+          "description": "Ethereum RPC endpoint URL"
+        },
+        "DATABASE_URL": {
+          "required": true,
+          "description": "PostgreSQL connection string (auto-provisioned)"
+        },
+        "REDIS_URL": {
+          "required": false,
+          "description": "Redis connection string (auto-provisioned)"
+        },
+        "JWT_SECRET": {
+          "required": true,
+          "description": "JWT secret for authentication"
+        },
+        "COINGECKO_API_KEY": {
+          "required": false,
+          "description": "CoinGecko API key for price feeds"
+        }
+      }
+    },
+    {
+      "name": "postgres",
+      "image": "postgres:15",
+      "variables": {
+        "POSTGRES_DB": "defi_portfolio",
+        "POSTGRES_USER": "portfolio_user",
+        "POSTGRES_PASSWORD": {
+          "generate": true
+        }
+      },
+      "volumes": [
+        {
+          "mountPath": "/var/lib/postgresql/data",
+          "size": 10
+        }
+      ]
+    },
+    {
+      "name": "redis",
+      "image": "redis:7-alpine",
+      "volumes": [
+        {
+          "mountPath": "/data",
+          "size": 1
+        }
+      ]
+    }
+  ],
+  "environments": {
+    "production": {
+      "branch": "main"
+    },
+    "staging": {
+      "branch": "develop"
+    }
+  }
+}

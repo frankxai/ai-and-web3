@@ -1,0 +1,49 @@
+{
+  "name": "@ai-web3/defi-portfolio-department",
+  "version": "1.0.0",
+  "description": "Multi-agent system for DeFi portfolio management",
+  "private": true,
+  "scripts": {
+    "dev": "docker-compose -f docker/docker-compose.yml up",
+    "dev:api": "uvicorn api.main:app --reload --port 8000",
+    "dev:mcp": "node mcp-servers/start-all.js",
+    "build": "tsc && pnpm build:mcp",
+    "build:mcp": "cd mcp-servers && pnpm build",
+    "test": "pytest tests/ -v",
+    "test:watch": "pytest-watch tests/",
+    "lint": "pylint api/ tools/ && eslint mcp-servers/",
+    "format": "black api/ tools/ && prettier --write mcp-servers/",
+    "docker:build": "docker-compose -f docker/docker-compose.yml build",
+    "docker:up": "docker-compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f docker/docker-compose.yml down",
+    "docker:logs": "docker-compose -f docker/docker-compose.yml logs -f",
+    "deploy:vercel": "cd ui && vercel --prod",
+    "deploy:railway": "railway up",
+    "k8s:apply": "kubectl apply -f deploy/k8s/",
+    "k8s:delete": "kubectl delete -f deploy/k8s/"
+  },
+  "keywords": [
+    "defi",
+    "portfolio",
+    "ai-agents",
+    "web3",
+    "ethereum",
+    "mcp"
+  ],
+  "author": "AI + Web3 Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "viem": "^2.21.4",
+    "zod": "^3.22.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

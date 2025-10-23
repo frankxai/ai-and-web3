@@ -1,0 +1,161 @@
+{
+  "name": "ethereum-mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Ethereum operations",
+  "protocol_version": "2024-11-05",
+  "server": {
+    "endpoint": "http://localhost:3001",
+    "transport": "sse",
+    "capabilities": {
+      "tools": true,
+      "resources": true,
+      "prompts": false
+    }
+  },
+  "tools": [
+    {
+      "name": "eth_getBalance",
+      "description": "Get ETH balance for an address",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "description": "Ethereum address"
+          },
+          "block": {
+            "type": "string",
+            "enum": ["latest", "pending", "earliest"],
+            "default": "latest"
+          }
+        },
+        "required": ["address"]
+      }
+    },
+    {
+      "name": "eth_call",
+      "description": "Execute a read-only contract call",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string",
+            "description": "Contract address"
+          },
+          "data": {
+            "type": "string",
+            "description": "Encoded function call data"
+          },
+          "block": {
+            "type": "string",
+            "default": "latest"
+          }
+        },
+        "required": ["to", "data"]
+      }
+    },
+    {
+      "name": "eth_estimateGas",
+      "description": "Estimate gas for a transaction",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "data": {"type": "string"},
+          "value": {"type": "string"}
+        },
+        "required": ["to"]
+      }
+    },
+    {
+      "name": "eth_getTokenBalance",
+      "description": "Get ERC20 token balance",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token contract address"
+          },
+          "address": {
+            "type": "string",
+            "description": "Holder address"
+          }
+        },
+        "required": ["token", "address"]
+      }
+    },
+    {
+      "name": "eth_multicall",
+      "description": "Batch multiple read calls into one request",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "calls": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {"type": "string"},
+                "callData": {"type": "string"}
+              }
+            }
+          }
+        },
+        "required": ["calls"]
+      }
+    },
+    {
+      "name": "eth_simulateTransaction",
+      "description": "Simulate transaction on Tenderly fork",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "data": {"type": "string"},
+          "value": {"type": "string"},
+          "simulate_on": {
+            "type": "string",
+            "enum": ["tenderly", "anvil"],
+            "default": "tenderly"
+          }
+        },
+        "required": ["from", "to", "data"]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "ethereum://mainnet/block/latest",
+      "name": "Latest Block",
+      "description": "Current block number and details"
+    },
+    {
+      "uri": "ethereum://mainnet/gas/price",
+      "name": "Gas Price",
+      "description": "Current gas price estimates"
+    }
+  ],
+  "configuration": {
+    "required_env": [
+      "ETHEREUM_RPC_URL"
+    ],
+    "optional_env": [
+      "ETHEREUM_RPC_WSS",
+      "TENDERLY_API_KEY",
+      "ETHERSCAN_API_KEY"
+    ]
+  },
+  "rate_limits": {
+    "requests_per_second": 10,
+    "requests_per_minute": 300
+  },
+  "error_handling": {
+    "retry_on_errors": [502, 503, 504, 429],
+    "max_retries": 3,
+    "backoff_multiplier": 2
+  }
+}
