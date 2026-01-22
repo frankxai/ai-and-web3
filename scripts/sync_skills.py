@@ -15,19 +15,21 @@ def iter_skill_files(source: Path):
         yield path
 
 
-def build_registry(sources):
+def build_registry(sources, dest_root: Path):
     skills = []
     for label, source in sources:
         for skill_md in iter_skill_files(source):
             rel = skill_md.parent.relative_to(source)
             parts = rel.parts
             category = parts[0] if parts else "root"
+            library_path = dest_root / label / rel
             skills.append(
                 {
                     "name": parts[-1] if parts else skill_md.parent.name,
                     "category": category,
                     "source": label,
-                    "path": str(skill_md.parent.as_posix()),
+                    "source_rel_path": str(rel.as_posix()),
+                    "library_path": str(library_path.as_posix()),
                 }
             )
     return {
@@ -88,14 +90,15 @@ def main():
     args = parser.parse_args()
 
     sources = parse_sources(args.source)
-    registry = build_registry(sources)
+    dest_root = Path(args.dest_root)
+    registry = build_registry(sources, dest_root)
 
     registry_path = Path(args.registry)
     registry_path.parent.mkdir(parents=True, exist_ok=True)
     registry_path.write_text(json.dumps(registry, indent=2))
 
     if args.copy:
-        copy_sources(sources, Path(args.dest_root))
+        copy_sources(sources, dest_root)
 
 
 if __name__ == "__main__":

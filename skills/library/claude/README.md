@@ -1,13 +1,13 @@
 # FrankX Claude Skills Library
-**Last Updated**: January 20, 2026
-**Total Skills**: 60 skills across 8 categories (including The Creator's Soulbook)
+**Last Updated**: December 29, 2025
+**Total Skills**: 52 skills across 8 categories (including The Creator's Soulbook)
 
 ---
 
 ## Quick Navigation
 
 - [The Creator's Soulbook](#the-creators-soulbook) (25 skills) - Life Books, 7 Pillars, AI Agents
-- [Technical Skills](#technical-skills) (18 skills) - AI frameworks, development, testing, architecture
+- [Technical Skills](#technical-skills) (10 skills) - AI frameworks, development, architecture
 - [Business Skills](#business-skills) (2 skills) - Oracle Cloud, product management
 - [Creative Skills](#creative-skills) (7 skills) - Brand, content, music, social media, book writing
 - [Personal Skills](#personal-skills) (4 skills) - Philosophy, fitness, nutrition
@@ -150,20 +150,11 @@ Skills use their directory name as identifier:
 | `oracle-adk` | Build agentic applications on OCI using Oracle ADK | Oracle Cloud agent development |
 | `oracle-agent-spec` | Design framework-agnostic AI agents using Oracle spec | Creating portable agent definitions |
 | `oracle-database-expert` | Oracle Database design, optimization, and best practices | Database architecture work |
-| `oracle-ai-architect` | **NEW** Comprehensive Oracle AI stack (GenAI, ADB 26ai, NVIDIA NIM, AIDP) | Full Oracle AI architecture decisions |
 | `nextjs-react-expert` | Next.js and React development patterns | Building web applications |
 | `framer-expert` | Framer design and development | Creating Framer sites/prototypes |
 | `ui-ux-design-expert` | UI/UX design, accessibility, design systems | Interface design decisions |
-| `shadcn-ui-patterns` | Build polished UI with shadcn/ui + FrankX glassmorphic design | Creating components, forms, modals |
-| `test-driven-development` | RED-GREEN-REFACTOR cycle for reliable code | Writing any new feature or fixing bugs |
-| `systematic-debugging` | Four-phase root cause analysis | Debugging issues that aren't obvious |
-| `webapp-testing` | Playwright e2e testing and UI verification | Testing user flows and UI behavior |
-| `implementation-planning` | Detailed plans with atomic tasks | Before starting multi-step features |
-| `parallel-agents` | Dispatch concurrent agent workflows | Multiple independent problems |
-| `react-nextjs-patterns` | Modern React 19 and Next.js 15 patterns | Building pages and components |
-| `skill-creator` | Meta-skill for creating new skills | Creating or improving skills |
 
-**Most Used**: `test-driven-development`, `shadcn-ui-patterns`, `react-nextjs-patterns`, `systematic-debugging`
+**Most Used**: `mcp-architecture`, `claude-sdk`, `nextjs-react-expert`
 
 ---
 
@@ -391,13 +382,13 @@ SKILL DIRECTORY STRUCTURE
 
 .claude-skills/
 ├── lifebook-*/         # 21 skills | 7 pillars × 3 tiers
-├── technical/          # 18 skills | AI, dev, testing, architecture
+├── technical/          # 10 skills | AI, dev, architecture
 ├── business/           # 2 skills  | Oracle, product management
 ├── creative/           # 7 skills  | Brand, content, music, books
 ├── personal/           # 4 skills  | Philosophy, fitness, health
 └── projects/           # 2 skills  | Arcanea, daily workflow
 
-TOTAL: 60 skills
+TOTAL: 48 skills
 
 LIFE PLAYBOOK PILLARS:
 1. Energy (Foundation)
@@ -410,10 +401,10 @@ LIFE PLAYBOOK PILLARS:
 
 MOST USED:
 1. frankx-brand
-2. shadcn-ui-patterns
+2. lifebook-premium/*
 3. mcp-architecture
-4. nextjs-react-expert
-5. suno-prompt-architect
+4. suno-prompt-architect
+5. oci-services-expert
 
 INVOKE SKILL:
 /skill <skill-name>
