@@ -34,7 +34,7 @@ See `docs/LANDSCAPE.md` for a curated snapshot of top AI + Web3 repos, common pa
 See `STRATEGY.md` for the build plan, priorities, and next-phase milestones.
 
 ## Skills Hub
-See `skills/README.md` for the curated skills registry, templates, and category indices.
+See `skills/README.md` for the curated skills registry, templates, and category indices. The machine-readable index lives in `skills/registry.json`, and optional mirrors live in `skills/library/`.
 
 Mermaid overview
 ```mermaid

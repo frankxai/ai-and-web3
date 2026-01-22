@@ -1,0 +1,429 @@
+{
+  "generated_at": "2026-01-22T22:34:42.577831+00:00",
+  "sources": [
+    {
+      "label": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills"
+    },
+    {
+      "label": "opencode",
+      "path": "/mnt/c/Users/Frank/FrankX/.opencode"
+    }
+  ],
+  "skills": [
+    {
+      "name": "oci-services-expert",
+      "category": "business",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/business/oci-services-expert"
+    },
+    {
+      "name": "product-management-expert",
+      "category": "business",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/business/product-management-expert"
+    },
+    {
+      "name": "content-synthesis",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/content-synthesis"
+    },
+    {
+      "name": "frankx-brand",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/frankx-brand"
+    },
+    {
+      "name": "frankx-content",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/frankx-content"
+    },
+    {
+      "name": "golden-age-book-writing",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/golden-age-book-writing"
+    },
+    {
+      "name": "social-media-strategy",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/social-media-strategy"
+    },
+    {
+      "name": "suno-ai-mastery",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/suno-ai-mastery"
+    },
+    {
+      "name": "suno-prompt-architect",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/suno-prompt-architect"
+    },
+    {
+      "name": "video-production-workflow",
+      "category": "creative",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/creative/video-production-workflow"
+    },
+    {
+      "name": "greek-philosopher",
+      "category": "personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/personal/greek-philosopher"
+    },
+    {
+      "name": "gym-training-expert",
+      "category": "personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/personal/gym-training-expert"
+    },
+    {
+      "name": "health-nutrition-expert",
+      "category": "personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/personal/health-nutrition-expert"
+    },
+    {
+      "name": "spartan-warrior",
+      "category": "personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/personal/spartan-warrior"
+    },
+    {
+      "name": "agentic-creator-os",
+      "category": "projects",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/projects/agentic-creator-os"
+    },
+    {
+      "name": "arcanea-lore",
+      "category": "projects",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/projects/arcanea-lore"
+    },
+    {
+      "name": "cacos",
+      "category": "projects",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/projects/cacos"
+    },
+    {
+      "name": "daily-content-ops",
+      "category": "projects",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/projects/daily-content-ops"
+    },
+    {
+      "name": "daily-publishing-ops",
+      "category": "projects",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/projects/daily-publishing-ops"
+    },
+    {
+      "name": "frankx-daily-execution",
+      "category": "projects",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/projects/frankx-daily-execution"
+    },
+    {
+      "name": "repo-sync-steward",
+      "category": "projects",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/projects/repo-sync-steward"
+    },
+    {
+      "name": "7-pillars",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars"
+    },
+    {
+      "name": "capital",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars/capital"
+    },
+    {
+      "name": "circle",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars/circle"
+    },
+    {
+      "name": "craft",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars/craft"
+    },
+    {
+      "name": "energy",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars/energy"
+    },
+    {
+      "name": "golden-path",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/golden-path"
+    },
+    {
+      "name": "legacy",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars/legacy"
+    },
+    {
+      "name": "life-symphony",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/life-symphony"
+    },
+    {
+      "name": "lifesmith",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/agents/lifesmith"
+    },
+    {
+      "name": "mind",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars/mind"
+    },
+    {
+      "name": "soul",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/7-pillars/soul"
+    },
+    {
+      "name": "soul-composer",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook/agents/soul-composer"
+    },
+    {
+      "name": "soulbook",
+      "category": "soulbook",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook"
+    },
+    {
+      "name": "career",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/career"
+    },
+    {
+      "name": "character",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/character"
+    },
+    {
+      "name": "emotional-life",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/emotional-life"
+    },
+    {
+      "name": "financial-life",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/financial-life"
+    },
+    {
+      "name": "health-fitness",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/health-fitness"
+    },
+    {
+      "name": "intellectual-life",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/intellectual-life"
+    },
+    {
+      "name": "life-vision",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/life-vision"
+    },
+    {
+      "name": "love-relationship",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/love-relationship"
+    },
+    {
+      "name": "parenting",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/parenting"
+    },
+    {
+      "name": "quality-of-life",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/quality-of-life"
+    },
+    {
+      "name": "social-life",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/social-life"
+    },
+    {
+      "name": "spiritual-life",
+      "category": "soulbook-personal",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/soulbook-personal/spiritual-life"
+    },
+    {
+      "name": "ai-architecture-patterns",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/ai-architecture-patterns"
+    },
+    {
+      "name": "claude-sdk",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/claude-sdk"
+    },
+    {
+      "name": "framer-expert",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/framer-expert"
+    },
+    {
+      "name": "implementation-planning",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/implementation-planning"
+    },
+    {
+      "name": "langgraph-patterns",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/langgraph-patterns"
+    },
+    {
+      "name": "mcp-architecture",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/mcp-architecture"
+    },
+    {
+      "name": "nextjs-react-expert",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/nextjs-react-expert"
+    },
+    {
+      "name": "openai-agentkit",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/openai-agentkit"
+    },
+    {
+      "name": "oracle-adk",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/oracle-adk"
+    },
+    {
+      "name": "oracle-agent-spec",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/oracle-agent-spec"
+    },
+    {
+      "name": "oracle-ai-architect",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/oracle-ai-architect"
+    },
+    {
+      "name": "oracle-database-expert",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/oracle-database-expert"
+    },
+    {
+      "name": "oracle-diagram-generator",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/oracle-diagram-generator"
+    },
+    {
+      "name": "parallel-agents",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/parallel-agents"
+    },
+    {
+      "name": "react-nextjs-patterns",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/react-nextjs-patterns"
+    },
+    {
+      "name": "security-auditor",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/security-auditor"
+    },
+    {
+      "name": "seo-intelligence",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/seo-intelligence"
+    },
+    {
+      "name": "shadcn-ui-patterns",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/shadcn-ui-patterns"
+    },
+    {
+      "name": "skill-creator",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/skill-creator"
+    },
+    {
+      "name": "systematic-debugging",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/systematic-debugging"
+    },
+    {
+      "name": "test-driven-development",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/test-driven-development"
+    },
+    {
+      "name": "ui-ux-design-expert",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/ui-ux-design-expert"
+    },
+    {
+      "name": "webapp-testing",
+      "category": "technical",
+      "source": "claude",
+      "path": "/mnt/c/Users/Frank/FrankX/.claude-skills/technical/webapp-testing"
+    }
+  ]
+}

@@ -17,6 +17,13 @@ A central registry of agent skills for AI + Web3 work. This hub keeps the repo l
 ## Templates
 - Skill template: `skills/templates/SKILL_TEMPLATE.md`
 
+## Registry
+- Machine-readable registry: `skills/registry.json`
+- Generate with: `python3 scripts/sync_skills.py --source claude=/path/to/.claude-skills`
+
+## Library mirror
+- Optional mirror for external skill libraries: `skills/library/README.md`
+
 ## How to add a skill
 1) Pick a category and create a new folder for the skill.
 2) Use the template in `skills/templates/SKILL_TEMPLATE.md`.

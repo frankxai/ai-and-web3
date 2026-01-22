@@ -4,16 +4,54 @@
 <header><nav class="nav"><div class="logo"><img src="assets/logo.svg"/><span>AI + Web3</span></div>
 <a href="index.html">Home</a><a href="get-started.html">Get Started</a><a href="labs.html">Labs</a><a href="agents.html">Frameworks</a><a href="mcp.html">MCP</a><a href="roadmap.html">Roadmap</a><a href="landscape.html">Landscape</a><a class="active" href="skills.html">Skills</a><a href="gallery.html">Gallery</a><a href="https://github.com/frankxai/ai-and-web3">GitHub</a></nav></header>
 <main class="hero">
-<h1>Skills Hub</h1>
-<p class="muted">A curated registry of skills for Claude, OpenCode, AI, Web3, and blockchain agents.</p>
-<div class="grid">
-  <div class="card"><h3>Claude Code</h3><p>Agent SDKs, MCP patterns, and orchestration skills.</p></div>
-  <div class="card"><h3>OpenCode</h3><p>Rapid prototyping, debugging, and repo automation.</p></div>
-  <div class="card"><h3>AI</h3><p>Eval harnesses, RAG pipelines, safety, and observability.</p></div>
-  <div class="card"><h3>Web3</h3><p>RPC, wallets, simulations, and governance ops.</p></div>
-  <div class="card"><h3>Blockchain</h3><p>EVM contracts, AA, cross-chain, and security.</p></div>
-</div>
-<p>Read the full registry: <a href="https://github.com/frankxai/ai-and-web3/blob/main/skills/README.md">skills/README.md</a></p>
+  <span class="badge">Skills registry</span>
+  <h1>Skills Hub</h1>
+  <p class="muted">A curated registry of skills for Claude, OpenCode, AI, Web3, and blockchain agents. Built for discoverability, reuse, and fast onboarding.</p>
+  <div class="cta-row">
+    <a class="cta" href="https://github.com/frankxai/ai-and-web3/blob/main/skills/README.md">Open Skills Index</a>
+    <a class="cta-secondary" href="https://github.com/frankxai/ai-and-web3/blob/main/resources/skills-catalog.md">Skills Catalog</a>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>Claude Code</h3>
+      <p>Agent SDKs, MCP patterns, and orchestration skills.</p>
+      <div class="tag-group"><span class="pill">mcp-architecture</span><span class="pill">claude-sdk</span><span class="pill">langgraph</span></div>
+    </div>
+    <div class="card">
+      <h3>OpenCode</h3>
+      <p>Rapid prototyping, debugging, and repo automation.</p>
+      <div class="tag-group"><span class="pill">prototyping</span><span class="pill">bug-fix</span><span class="pill">automation</span></div>
+    </div>
+    <div class="card">
+      <h3>AI</h3>
+      <p>Eval harnesses, RAG pipelines, safety, and observability.</p>
+      <div class="tag-group"><span class="pill">evals</span><span class="pill">rag</span><span class="pill">safety</span></div>
+    </div>
+    <div class="card">
+      <h3>Web3</h3>
+      <p>RPC, wallets, simulations, and governance ops.</p>
+      <div class="tag-group"><span class="pill">rpc</span><span class="pill">wallets</span><span class="pill">governance</span></div>
+    </div>
+    <div class="card">
+      <h3>Blockchain</h3>
+      <p>EVM contracts, AA, cross-chain, and security.</p>
+      <div class="tag-group"><span class="pill">contracts</span><span class="pill">aa</span><span class="pill">security</span></div>
+    </div>
+  </div>
+  <section>
+    <h2>How we use skills</h2>
+    <p>Every skill is a small, reusable playbook with triggers, tools, workflows, and validation steps. Add new skills with the standard template and keep them lean.</p>
+    <div class="tag-group">
+      <span class="pill">Trigger</span>
+      <span class="pill">Inputs</span>
+      <span class="pill">Workflow</span>
+      <span class="pill">Validation</span>
+    </div>
+  </section>
+  <section>
+    <h2>Machine-readable registry</h2>
+    <p class="muted">Use <code>skills/registry.json</code> for indexing, search, and tooling.</p>
+  </section>
 </main>
 <div class="footer">Maintained by AI Architects • MIT License</div>
 </body></html>

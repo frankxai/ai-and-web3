@@ -35,3 +35,4 @@ Curated list of skills for AI + Web3 agents. This file is the single index for d
 ## Contribution
 - Add new skills under `skills/` and update this catalog.
 - Use `skills/templates/SKILL_TEMPLATE.md` for structure.
+- Update `skills/registry.json` via `scripts/sync_skills.py`.
