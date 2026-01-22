@@ -10,6 +10,7 @@ Build, evaluate, and compare AI agents that reason about, interact with, and shi
 - Overview
 - Landscape
 - Strategy
+- Skills Hub
 - Repo Structure
 - Quickstart
 - Daily Labs
@@ -32,6 +33,9 @@ See `docs/LANDSCAPE.md` for a curated snapshot of top AI + Web3 repos, common pa
 ## Strategy
 See `STRATEGY.md` for the build plan, priorities, and next-phase milestones.
 
+## Skills Hub
+See `skills/README.md` for the curated skills registry, templates, and category indices.
+
 Mermaid overview
 ```mermaid
 flowchart LR
@@ -51,6 +55,7 @@ packages/              # Reusable TS toolkits (EVM, IPFS, ...)
 external/              # Vendored submodules (AgentKits, MCP)
 docs/                  # Website: inspiration + guides
 resources/             # Curations
+skills/                # Agent skills registry and templates
 labs/                  # Optional labs & experiments
 scripts/               # Runners (Python), playbooks, utilities
 ```
