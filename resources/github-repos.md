@@ -33,6 +33,16 @@ High-signal projects and example repos to accelerate AI+Web3 development. Prefer
 - thirdweb AgentKit — https://github.com/thirdweb-dev/agentkit
 - Autonolas (OLAS) — https://github.com/autonolas
 
+## AI + Web3 agent platforms (top repos)
+- IntentKit — https://github.com/crestalnetwork/intentkit (agent skills, on-chain + social)
+- GaiaNet Node — https://github.com/GaiaNet-AI/gaianet-node (decentralized AI nodes, one-command install)
+- uAgents — https://github.com/fetchai/uAgents (lightweight Python agents with on-chain registry)
+- Open Autonomy — https://github.com/valory-xyz/open-autonomy (decentralized multi-agent services)
+- WORLD AI Protocol — https://github.com/WORLD3-ai/world_ai_protocol (permissioned delegation protocol)
+- Ethora — https://github.com/dappros/ethora (chat + AI + wallet app engine)
+- Lux — https://github.com/Spectral-Finance/lux (multi-agent framework, observability and tests)
+- Covalent AI Agent SDK — https://github.com/covalenthq/ai-agent-sdk (composable agent/workflow SDK)
+
 ## Wallets and clients
 - wagmi — https://github.com/wagmi-dev/wagmi
 - WalletConnect — https://github.com/WalletConnect/walletconnect-monorepo

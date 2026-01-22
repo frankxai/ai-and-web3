@@ -8,6 +8,8 @@ Build, evaluate, and compare AI agents that reason about, interact with, and shi
 
 ## Table of contents
 - Overview
+- Landscape
+- Strategy
 - Repo Structure
 - Quickstart
 - Daily Labs
@@ -23,6 +25,12 @@ Build, evaluate, and compare AI agents that reason about, interact with, and shi
 - Compare agent frameworks head‑to‑head on real Web3 tasks
 - Reuse high‑quality scaffolds for new projects and demos
 - Capture best practices for security, ops, and reliability
+
+## Landscape
+See `docs/LANDSCAPE.md` for a curated snapshot of top AI + Web3 repos, common patterns, and gaps we can own.
+
+## Strategy
+See `STRATEGY.md` for the build plan, priorities, and next-phase milestones.
 
 Mermaid overview
 ```mermaid
