@@ -9,7 +9,6 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@ai-web3/evm-tools": "workspace:*"
+    "@ai-web3/evm-tools": "0.1.0"
   }
 }
-
