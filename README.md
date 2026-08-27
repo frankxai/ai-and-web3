@@ -2,7 +2,7 @@
 
 Build, evaluate, and compare AI agents that reason about, interact with, and ship on Web3. Organized for daily, testable progression and repeatable experiments across chains, tools, and agent frameworks.
 
-![Status](https://img.shields.io/badge/status-active-brightgreen) ![Scope](https://img.shields.io/badge/focus-AI%20agents%20%E2%86%94%EF%B8%8F%20Web3-blue) ![License](https://img.shields.io/badge/license-MIT-lightgrey)
+![Status](https://img.shields.io/badge/status-active-brightgreen) ![Scope](https://img.shields.io/badge/focus-AI%20agents%20%E2%86%94%EF%B8%8F%20Web3-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-blue)
 
 ---
 
