@@ -15,5 +15,7 @@
   "devDependencies": {
     "@types/node": "^20.12.12",
     "typescript": "^5.5.4"
-  }
+  },
+  "license": "Apache-2.0",
+  "author": "Frank Riemer <frank@frankx.ai>"
 }
